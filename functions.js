@@ -39,19 +39,20 @@ function getColumn(S, k) {
   return column;
 }
 
-
-/*  CHANGE IT IN THE FORK */
-
-const algo_name = "min-max verification";  // Please provide the name of your algorithm
+const algo_name = "min-max verification";  
 
 function checker(stats, arr){
-	for(let j=0; j<stats[0].length; j++){
+	const p = 0.1; // 10%
+	let counter = 0;
+	const columns = stats[0].length;
+		  
+  	for(let j=0; j<columns; j++){
 		const column = getColumn(stats, j);
-		if((arr[j] <  Math.min(...column)) || (arr[j] >  Math.max(...column))){
-			return false;
-		}
-	}
-	return true;
+		const low = Aver(column) - 3*Math.sqrt(Var(column));
+		const upp = Aver(column) + 3*Math.sqrt(Var(column));
+		if((arr[j] <  low) || (arr[j] >  upp)) counter++;
+  	}
+  	return (counter/columns * 100 > p) ? false : true;
 }
 
 
