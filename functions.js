@@ -39,7 +39,7 @@ function getColumn(S, k) {
   return column;
 }
 
-const algo_name = "min-max verification";  
+const algo_name = "dispersio approach";  
 
 function checker(stats, arr){
 	const p = 0.1; // 10%
